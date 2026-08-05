@@ -50,7 +50,7 @@ local function slide()
 
 	local bv=Instance.new("BodyVelocity")
 	bv.Name="SlideVelocity"
-	bv.MaxForce=Vector3.new(30000,0,30000)
+	bv.MaxForce=Vector3.new(1,0,1) * 30000
 	bv.Velocity=root.CFrame.LookVector*100
 	bv.Parent=root
 
