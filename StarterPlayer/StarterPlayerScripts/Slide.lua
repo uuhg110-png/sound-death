@@ -24,15 +24,13 @@ local function dust()
 	local a = Instance.new("Attachment")
 	a.Position = Vector3.new(0,-2.5,0)
 	a.Parent = root
-
 	local p = Instance.new("ParticleEmitter")
 	p.Texture = "rbxasset://textures/particles/smoke_main.dds"
 	p.Rate = 80
 	p.Lifetime = NumberRange.new(.35,.8)
 	p.Speed = NumberRange.new(1,4)
 	p.Parent = a
-
-	task.delay(.5,function()
+	task.delay(.8,function()
 		p.Enabled=false
 		Debris:AddItem(a,2)
 	end)
@@ -40,16 +38,14 @@ end
 
 local function slide()
 	if not canSlide then return end
-
 	canSlide=false
-	humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
 
+	humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
 	sound:Play()
 
 	local track=humanoid:LoadAnimation(slideAnim)
 	track.Priority=Enum.AnimationPriority.Action3
 	track:Play()
-
 	dust()
 
 	local bv=Instance.new("BodyVelocity")
@@ -60,14 +56,13 @@ local function slide()
 
 	for i=1,12 do
 		task.wait(.08)
-		bv.Velocity*=.78
+		if bv then bv.Velocity*=.78 end
 		if i%2==0 then dust() end
 	end
 
 	bv:Destroy()
 	track:Stop()
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
-
 	task.wait(.5)
 	canSlide=true
 end
