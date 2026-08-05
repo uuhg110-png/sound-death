@@ -56,7 +56,7 @@ local function slide()
 
 	for i=1,12 do
 		task.wait(.08)
-		if bv then bv.Velocity*=.78 end
+		bv.Velocity*=.78
 		if i%2==0 then dust() end
 	end
 
